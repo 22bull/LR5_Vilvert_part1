@@ -1,50 +1,35 @@
-#ifndef _VILVERT_MATHTASK_H_
-#define _VILVERT_MATHTASK_H_
-#include <iostream>
-#include <limits> // Для std::numeric_limits
-#include <string> // Для std::stoi и обработки исключений
+#ifndef _SURNAME_MATHTASK_H
+#define _SURNAME_MATHTASK_H
 
+#include <string>
 using namespace std;
 
-// Функция контроля ввода целых чисел
-int getValidatedIntegerInput(const string& prompt) {
-    string input;
-    int value;
-    bool isValid = false;
-
-    while (!isValid) {
-        cout << prompt;
-        getline(cin, input);
-
-        try {
-            size_t pos;
-            value = stoi(input, &pos);
-
-            // Проверяем, что вся строка была обработана (нет лишних символов)
-            if (pos == input.size()) {
-                isValid = true;
-            } else {
-                cout << "Ошибка: введены лишние символы. Пожалуйста, введите целое число.\n";
-            }
-        } catch (const invalid_argument&) {
-            cout << "Ошибка: введено не число. Пожалуйста, введите целое число.\n";
-        } catch (const out_of_range&) {
-            cout << "Ошибка: число слишком большое или слишком маленькое. Пожалуйста, введите другое число.\n";
-        }
+// Функция контроля вводимых данных
+bool UserInput(string input) {
+    // Если строка пустая - ввод некорректен
+    if (input.empty()) return false;
+    // Попытаться
+    try {
+        // Преобразование введенного значения в тип
+        int number = stoi(input);
     }
-
-    return value;
+    catch (...) // Если возникла ошибка в блоке try
+    { return false; }
+    return true;
+}// Метод ввода данных
+void EnterDigit(int& varLink, const string& label) {
+    string raw_input;
+    cout << label << " = ";
+    getline(cin, raw_input);
+    while (!UserInput(raw_input)) {
+        cout << label << " = ";
+        getline(cin, raw_input);
+    }
+    varLink = stoi(raw_input);
 }
 
-// Метод ввода данных (ширины и высоты прямоугольника)
-void inputRectangleDimensions(int& width, int& height) {
-    cout << "Введите размеры прямоугольника:\n";
-    width = getValidatedIntegerInput("Ширина: ");
-    height = getValidatedIntegerInput("Высота: ");
-}
-
-// Метод вычисления площади прямоугольника
-int calculateRectangleArea(int width, int height) {
-    return width * height;
+// Вычисление площади прямоугольника
+int CalcRectangleArea(int NumberA, int NumberB) {
+    return NumberA * NumberB;
 }
 #endif
