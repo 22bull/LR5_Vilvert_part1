@@ -1,22 +1,18 @@
 #include <iostream>
-#include <limits> // Для std::numeric_limits
-#include <string> // Для std::stoi и обработки исключений
 #include "Vilvert_MathTask.h"
-int main() {
-    int width, height;
 
-    // Ввод данных с проверкой
-    inputRectangleDimensions(width, height);
+using namespace std;
 
-    // Проверка на неотрицательные значения
-    while (width <= 0 || height <= 0) {
-        cout << "Ошибка: ширина и высота должны быть положительными числами.\n";
-        inputRectangleDimensions(width, height);
-    }
+int main()
+{
+    int NumberA = 0, NumberB = 0;
+    // Ввод переменной A
+    EnterDigit(NumberA, "input height A");
+    // Ввод переменной B
+    EnterDigit(NumberB, "input height B");
 
-    // Вычисление и вывод площади
-    int area = calculateRectangleArea(width, height);
-    cout << "Площадь прямоугольника: " << area << endl;
-
-    return 0;
+    // Вычисление площади прямоугольника
+    int RectangleArea = CalcRectangleArea(NumberA, NumberB);
+    // Вывод значения площади
+    cout << "Area of Rectangle is " << RectangleArea << endl;
 }
